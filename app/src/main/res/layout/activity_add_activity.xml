@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="16dp">
+
+    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Activity Name">
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/nameEditText" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Description" android:layout_marginTop="8dp">
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/descEditText" android:layout_width="match_parent" android:layout_height="wrap_content" android:minLines="3" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Data Categories" android:layout_marginTop="8dp">
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/categoriesEditText" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner android:id="@+id/legalBasisSpinner" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" />
+
+    <com.google.android.material.button.MaterialButton android:id="@+id/saveButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Save" android:layout_marginTop="16dp" />
+</LinearLayout>

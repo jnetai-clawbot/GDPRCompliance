@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+
+        <TextView android:id="@+id/nameText" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/white" />
+        <TextView android:id="@+id/descText" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="14sp" android:paddingTop="8dp" />
+        <TextView android:id="@+id/basisText" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="14sp" android:paddingTop="4dp" />
+        <TextView android:id="@+id/categoryText" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="14sp" android:paddingTop="4dp" />
+        <TextView android:id="@+id/dateText" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="12sp" android:paddingTop="4dp" android:alpha="0.6" />
+
+        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" app:cardCornerRadius="8dp" xmlns:app="http://schemas.android.com/apk/res-auto">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Risk Assessment" android:textStyle="bold" android:textSize="16sp" />
+                <TextView android:id="@+id/riskLikelihood" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="8dp" />
+                <TextView android:id="@+id/riskImpact" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/riskLevel" android:layout_width="match_parent" android:layout_height="wrap_content" android:textStyle="bold" />
+                <TextView android:id="@+id/mitigationText" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="New Risk Assessment" android:textStyle="bold" android:textSize="16sp" android:layout_marginTop="16dp" />
+
+        <com.google.android.material.slider.Slider android:id="@+id/likelihoodSlider" android:layout_width="match_parent" android:layout_height="wrap_content" android:stepSize="1" android:valueFrom="1" android:valueTo="5" android:layout_marginTop="8dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Likelihood (1-5)" />
+        <com.google.android.material.slider.Slider android:id="@+id/impactSlider" android:layout_width="match_parent" android:layout_height="wrap_content" android:stepSize="1" android:valueFrom="1" android:valueTo="5" android:layout_marginTop="8dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Impact (1-5)" />
+
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Mitigation" android:layout_marginTop="8dp">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/mitigationInput" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/saveRiskButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Save Risk Assessment" android:layout_marginTop="8dp" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/deleteButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Delete Activity" android:layout_marginTop="8dp" app:backgroundTint="@color/design_default_color_error" xmlns:app="http://schemas.android.com/apk/res-auto" />
+    </LinearLayout>
+</ScrollView>

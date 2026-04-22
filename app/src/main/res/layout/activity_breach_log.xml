@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="16dp">
+
+    <TextView android:id="@+id/emptyView" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No breaches logged." android:textAlignment="center" android:padding="32dp" android:textSize="16sp" android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/breachRecycler" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+
+    <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" xmlns:app="http://schemas.android.com/apk/res-auto" app:cardCornerRadius="8dp" app:cardElevation="2dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Log New Breach" android:textStyle="bold" android:textSize="16sp" />
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Title">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/titleInput" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Description">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/descInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:minLines="2" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Affected Users">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/affectedInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <Spinner android:id="@+id/severitySpinner" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/addBreachButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Add Breach" android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

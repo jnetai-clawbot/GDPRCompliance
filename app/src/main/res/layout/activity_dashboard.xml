@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+
+        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="12dp" app:cardElevation="4dp" android:layout_marginBottom="16dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp" android:gravity="center">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Compliance Score" android:textSize="14sp" />
+                <TextView android:id="@+id/complianceScore" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="48sp" android:textStyle="bold" android:textColor="@color/white" />
+                <ProgressBar android:id="@+id/complianceProgress" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:max="100" />
+                <TextView android:id="@+id/checksCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="8dp" app:cardElevation="2dp" android:layout_marginBottom="8dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                <TextView android:id="@+id/activitiesCount" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="16sp" />
+                <TextView android:id="@+id/breachesCount" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="14sp" android:paddingTop="8dp" />
+                <TextView android:id="@+id/unresolvedText" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="14sp" android:paddingTop="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/exportButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Export Report (JSON)" android:layout_marginTop="8dp" />
+    </LinearLayout>
+</ScrollView>

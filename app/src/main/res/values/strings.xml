@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GDPR Compliance</string>
+    <string name="action_dashboard">Dashboard</string>
+    <string name="action_checklist">Checklist</string>
+    <string name="action_breaches">Breach Log</string>
+    <string name="action_about">About</string>
+</resources>
