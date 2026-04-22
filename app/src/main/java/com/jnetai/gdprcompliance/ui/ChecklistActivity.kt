@@ -56,7 +56,7 @@ class ChecklistActivity : AppCompatActivity() {
     private fun toggleCheck(check: ComplianceCheck) {
         val newStatus = if (check.status == "completed") "pending" else "completed"
         lifecycleScope.launch {
-            app.database.dao().updateCheckStatus(check.id, newStatus, check.notes, LocalDate.now())
+            app.database.dao().updateCheck(check.copy(status = newStatus, dateChecked = LocalDate.now()))
         }
     }
 

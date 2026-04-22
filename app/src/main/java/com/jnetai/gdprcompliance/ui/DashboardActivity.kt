@@ -1,7 +1,7 @@
 package com.jnetai.gdprcompliance.ui
 
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -9,10 +9,11 @@ import com.google.gson.Gson
 import com.jnetai.gdprcompliance.BuildConfig
 import com.jnetai.gdprcompliance.GDPRApp
 import com.jnetai.gdprcompliance.R
+import com.jnetai.gdprcompliance.data.ComplianceCheck
 import com.jnetai.gdprcompliance.databinding.ActivityDashboardBinding
 import kotlinx.coroutines.launch
-import java.net.URL
-import org.json.JSONObject
+import kotlinx.coroutines.flow.collectLatest
+import java.time.LocalDate
 
 class DashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDashboardBinding
@@ -26,15 +27,9 @@ class DashboardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         lifecycleScope.launch {
-            val activities = app.database.dao().getAllActivities()
-            val checks = app.database.dao().getAllChecks()
-            val risks = app.database.dao().getAllRisks()
-            val breaches = app.database.dao().getAllBreaches()
-
-            activities.collectLatest { acts ->
-                binding.activitiesCount.text = "${acts.size} activities"
+            app.database.dao().getAllActivities().collectLatest { activities ->
+                binding.activitiesCount.text = "${activities.size} activities"
             }
-            // Collect from flows separately
         }
 
         lifecycleScope.launch {
@@ -57,28 +52,19 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         binding.exportButton.setOnClickListener {
-            lifecycleScope.launch {
-                exportData()
-            }
+            lifecycleScope.launch { exportData() }
         }
     }
 
     private suspend fun exportData() {
-        // Export all data as JSON
-        val acts = mutableListOf<com.jnetai.gdprcompliance.data.ProcessingActivity>()
-        val checks = mutableListOf<com.jnetai.gdprcompliance.data.ComplianceCheck>()
-        val risks = mutableListOf<com.jnetai.gdprcompliance.data.RiskAssessment>()
-        val breaches = mutableListOf<com.jnetai.gdprcompliance.data.BreachLog>()
-
         val gson = Gson()
         val data = mapOf(
-            "processing_activities" to acts,
-            "compliance_checks" to checks,
-            "risk_assessments" to risks,
-            "breach_logs" to breaches
+            "compliance_checks" to emptyList<ComplianceCheck>(),
+            "processing_activities" to emptyList<com.jnetai.gdprcompliance.data.ProcessingActivity>(),
+            "risk_assessments" to emptyList<com.jnetai.gdprcompliance.data.RiskAssessment>(),
+            "breach_logs" to emptyList<com.jnetai.gdprcompliance.data.BreachLog>()
         )
         val json = gson.toJson(data)
-
         try {
             val file = java.io.File(getExternalFilesDir(null), "gdpr_compliance_export.json")
             file.writeText(json)

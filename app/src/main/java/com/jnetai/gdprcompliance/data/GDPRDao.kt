@@ -2,6 +2,7 @@ package com.jnetai.gdprcompliance.data
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import java.time.LocalDate
 
 @Dao
 interface GDPRDao {
@@ -23,8 +24,8 @@ interface GDPRDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCheck(check: ComplianceCheck): Long
 
-    @Query("UPDATE compliance_checks SET status = :status, notes = :notes, dateChecked = :date WHERE id = :id")
-    suspend fun updateCheckStatus(id: Long, status: String, notes: String, date: LocalDate?)
+    @Update
+    suspend fun updateCheck(check: ComplianceCheck)
 
     @Query("SELECT * FROM risk_assessments ORDER BY dateAssessed DESC")
     fun getAllRisks(): Flow<List<RiskAssessment>>
@@ -41,6 +42,6 @@ interface GDPRDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBreach(breach: BreachLog): Long
 
-    @Query("UPDATE breach_logs SET dateResolved = :date WHERE id = :id")
-    suspend fun resolveBreach(id: Long, date: LocalDate)
+    @Update
+    suspend fun updateBreach(breach: BreachLog)
 }

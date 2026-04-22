@@ -27,6 +27,9 @@ class BreachLogActivity : AppCompatActivity() {
         binding.breachRecycler.layoutManager = LinearLayoutManager(this)
         binding.breachRecycler.adapter = adapter
 
+        val severities = listOf("low", "medium", "high", "critical")
+        binding.severitySpinner.adapter = android.widget.ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, severities)
+
         lifecycleScope.launch {
             app.database.dao().getAllBreaches().collectLatest { breaches ->
                 adapter.submitList(breaches)
