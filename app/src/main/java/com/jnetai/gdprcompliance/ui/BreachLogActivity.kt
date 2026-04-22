@@ -1,6 +1,7 @@
 package com.jnetai.gdprcompliance.ui
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -28,7 +29,7 @@ class BreachLogActivity : AppCompatActivity() {
         binding.breachRecycler.adapter = adapter
 
         val severities = listOf("low", "medium", "high", "critical")
-        binding.severitySpinner.adapter = android.widget.ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, severities)
+        binding.severitySpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, severities)
 
         lifecycleScope.launch {
             app.database.dao().getAllBreaches().collectLatest { breaches ->
@@ -38,10 +39,11 @@ class BreachLogActivity : AppCompatActivity() {
         }
 
         binding.addBreachButton.setOnClickListener {
-            val title = binding.titleInput.text.toString().trim()
-            val desc = binding.descInput.text.toString().trim()
-            val affected = binding.affectedInput.text.toString().toIntOrNull() ?: 0
-            val severity = binding.severitySpinner.selectedItem.toString()
+            val title = binding.titleInput.text?.toString()?.trim() ?: ""
+            val desc = binding.descInput.text?.toString()?.trim() ?: ""
+            val affectedStr = binding.affectedInput.text?.toString()?.trim() ?: "0"
+            val affected = affectedStr.toIntOrNull() ?: 0
+            val severity = binding.severitySpinner.selectedItem?.toString() ?: "medium"
 
             if (title.isBlank()) { Toast.makeText(this, "Title required", Toast.LENGTH_SHORT).show(); return@setOnClickListener }
 
@@ -50,9 +52,9 @@ class BreachLogActivity : AppCompatActivity() {
                     title = title, description = desc, affectedUsers = affected,
                     severity = severity, dateOccurred = LocalDate.now()
                 ))
-                binding.titleInput.text.clear()
-                binding.descInput.text.clear()
-                binding.affectedInput.text.clear()
+                binding.titleInput.text?.clear()
+                binding.descInput.text?.clear()
+                binding.affectedInput.text?.clear()
             }
         }
     }
